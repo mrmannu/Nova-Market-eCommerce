@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive demo storefront built with HTML, CSS and JavaScript.">
+  <title>Nova Market | Everyday Essentials</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="announcement">Free shipping on demo orders over ₹1,999</div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Nova Market home"><span class="brand-mark">N</span> nova<span>market</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a>
+      <a href="#why-nova">Why Nova</a>
+    </nav>
+    <button class="cart-trigger" id="cartBtn" aria-label="Open shopping cart">
+      <span aria-hidden="true">Bag</span><span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> THE EVERYDAY EDIT</p>
+        <h1>Good things.<br><span>Better living.</span></h1>
+        <p class="hero-description">Thoughtful picks for your everyday life. Discover useful essentials with a little extra style.</p>
+        <a class="primary-btn hero-btn" href="#shop">Explore the collection <span aria-hidden="true">↗</span></a>
+        <div class="hero-proof"><span class="proof-avatars">N <i>+</i> <b>✓</b></span><span>Curated for everyday living</span></div>
+      </div>
+      <div class="hero-art" aria-label="Featured headphones and everyday accessories">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="hero-sticker">THE<br>NEW<br>STANDARD <span>✳</span></div>
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85" alt="Modern wireless headphones" fetchpriority="high">
+        <div class="art-caption"><span>01 / FEATURED</span><strong>Design that feels right.</strong></div>
+      </div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow">MADE FOR YOUR ROUTINE</p><h2>Find your next favourite.</h2></div>
+        <p class="section-note">Useful things. Thoughtfully chosen.</p>
+      </div>
+
+      <div class="shop-toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search products..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="toolbar-right">
+          <label class="select-wrap"><span class="sr-only">Filter by category</span>
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+              <option value="Tech">Tech</option>
+              <option value="Home">Home</option>
+              <option value="Lifestyle">Lifestyle</option>
+            </select>
+          </label>
+          <label class="select-wrap"><span class="sr-only">Sort products</span>
+            <select id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="results-line"><span id="resultsCount">6 products</span><button id="clearFilters" class="text-button">Clear filters</button></div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><span>⌕</span><h3>No products found</h3><p>Try a different search or clear your filters.</p><button class="primary-btn" id="resetSearch">Show all products</button></div>
+    </section>
+
+    <section class="why-section" id="why-nova">
+      <div><p class="eyebrow">THE NOVA PROMISE</p><h2>Less clutter.<br>More of what matters.</h2></div>
+      <div class="promise"><span>01</span><div><h3>Thoughtful selection</h3><p>Every item earns its place in your everyday routine.</p></div></div>
+      <div class="promise"><span>02</span><div><h3>Simple by design</h3><p>A straightforward shopping experience, from browse to bag.</p></div></div>
+      <div class="promise"><span>03</span><div><h3>Made for everyone</h3><p>Responsive, accessible design on the devices you use.</p></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">N</span> nova<span>market</span></a><p>A front-end portfolio project built with HTML, CSS & JavaScript.</p><span>© <span id="year"></span> Nova Market · Demo store</span></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="drawer-header"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="cartTitle">Your bag <span id="drawerCount">(0)</span></h2></div><button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty"><div class="empty-bag">↗</div><h3>Your bag is waiting.</h3><p>Looks like you haven't added anything yet.</p><button class="primary-btn" id="continueShopping">Explore products</button></div>
+    <div class="drawer-footer" id="drawerFooter">
+      <div class="subtotal-row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+      <p class="shipping-note">Shipping and taxes are calculated at checkout.</p>
+      <button class="primary-btn checkout-btn" id="checkoutBtn">Continue to checkout <span>→</span></button>
+      <p class="demo-note">Demo checkout — no payment will be collected.</p>
+    </div>
+  </aside>
+
+  <div class="modal-backdrop" id="checkoutModal" aria-hidden="true">
+    <section class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="icon-btn modal-close" id="closeCheckout" aria-label="Close checkout">✕</button>
+      <p class="eyebrow">ALMOST THERE</p><h2 id="checkoutTitle">Delivery details</h2>
+      <p class="modal-intro">This is a front-end demo. Enter sample details to test form validation.</p>
+      <form id="checkoutForm" novalidate>
+        <label for="customerName">Full name</label><input id="customerName" name="customerName" autocomplete="name" placeholder="e.g. Manu Singh" required minlength="2">
+        <label for="customerEmail">Email address</label><input id="customerEmail" name="customerEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="customerAddress">Delivery address</label><textarea id="customerAddress" name="customerAddress" autocomplete="street-address" placeholder="House number, street, city" required minlength="8" rows="3"></textarea>
+        <p class="form-error" id="formError" role="alert"></p>
+        <button class="primary-btn checkout-btn" type="submit">Place demo order <span>→</span></button>
+      </form>
+      <div class="success-state hidden" id="successState"><span>✓</span><h3>Order placed!</h3><p id="successMessage">Your demo order is confirmed.</p><button class="primary-btn" id="finishOrder">Continue shopping</button></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
